@@ -1,2 +1,2 @@
 "# HSConnect" 
-HALLO! Nina
+HALLO! Nina, was geht!
