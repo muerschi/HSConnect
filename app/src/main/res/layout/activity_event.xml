@@ -29,17 +29,25 @@
         style="@style/EventEditText"
         />
 
-    <EditText
+    <TextView
         android:id="@+id/editText3"
-        android:hint="@string/date"
+        android:text="@string/date"
         style="@style/EventEditText"
+        android:onClick="showDatePickerDialog"
+        android:textAlignment="center"
+        android:textSize="20dp"
         />
 
-    <EditText
+    <TextView
         android:id="@+id/editText4"
-        android:hint="@string/time"
+        android:text="@string/time"
         style="@style/EventEditText"
+        android:onClick="showTimePickerDialog"
+        android:textAlignment="center"
+        android:textSize="20dp"
         />
+
+
 
     <EditText
         android:id="@+id/editText5"
@@ -47,12 +55,18 @@
         style="@style/EventEditText"
         />
 
+    <!--<Spinner
+        android:id="@+id/faculty_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    -->
+
         <Button
+            android:id="@+id/save"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:text="@string/save"
             android:layout_marginBottom="20dp"
-            android:onClick="sendMessage"
             />
 
     </LinearLayout>

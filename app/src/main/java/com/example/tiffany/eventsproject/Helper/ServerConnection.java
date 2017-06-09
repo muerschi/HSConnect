@@ -29,7 +29,7 @@ public class ServerConnection {
 
     public boolean Login(String email, String password, SessionManager session) {
         try {
-            httppost = new HttpPost("http://141.19.176.118:8080/PMAWebServer/login");
+            httppost = new HttpPost("http://141.19.176.160:8080/PMAWebServer/login");
             List<NameValuePair> namevaluepairs = new ArrayList<NameValuePair>(2);
             namevaluepairs.add(new BasicNameValuePair("email", email));
             namevaluepairs.add(new BasicNameValuePair("password", password));
