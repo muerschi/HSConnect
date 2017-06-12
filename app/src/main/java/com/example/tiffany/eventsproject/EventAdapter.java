@@ -38,9 +38,9 @@ public class EventAdapter extends ArrayAdapter<Event> {
         TextView evLocation = (TextView) convertView.findViewById(R.id.evLocation);
         TextView evTime = (TextView) convertView.findViewById(R.id.evTime);
         // Populate the data into the template view using the data object
-        evTitle.setText("Titel des Events: " + event.getTitle());
-        evLocation.setText("Ort: " + event.getLocation());
-        evTime.setText("Zeit: " + event.getTime());
+        evTitle.setText(event.getTitle());
+        evLocation.setText("Wo? " + event.getLocation());
+        evTime.setText("Wann? " + event.getEventDate());
 
         CardView evCard = (CardView) convertView.findViewById(R.id.eventCard);
         evCard.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +61,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
                 newEventActivity.putExtra("eventDate", event.getEventDate());
                 newEventActivity.putExtra("eventTime", event.getTime());
                 newEventActivity.putExtra("eventDescription", event.getDescription());
+                newEventActivity.putExtra("evID", event.getId());
                 //newEventActivity.putExtra("faculty", event.getFaculty());
 
                 getContext().startActivity(newEventActivity);

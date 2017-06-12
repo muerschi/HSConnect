@@ -47,11 +47,6 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
 
     EditText eventTitle, location, description;
     TextView time, eventDate;
-    /*
-    SessionManager session;
-    HttpPost httpPost = null;
-    HttpClient httpClient = new DefaultHttpClient();
-    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +59,7 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
         time = (TextView) findViewById(R.id.editText4);
         description = (EditText) findViewById(R.id.editText5);
 
-        Bundle extras = getIntent().getExtras();
+        final Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
 
@@ -87,16 +82,6 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
             description.setText(evDescription);
 
         }
-        /*
-        Spinner spinner = (Spinner) findViewById(R.id.faculty_spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.faculty_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-        */
 
         final Button button = (Button) findViewById(R.id.save);
         button.setOnClickListener(new View.OnClickListener() {
@@ -120,8 +105,12 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
                 ev.setTime(time.getText().toString());
                 // ev.setFaculty(session.getUserDetails().get(KEY_FACULTY));
                 ev.setLocation(location.getText().toString());
+                ev.setId(extras.getInt("evID"));
 
                 new HttpPostEvent(ev).execute();
+
+                Intent newEventActivity = new Intent(EventActivity.this, EventActivity.class);
+                startActivity(newEventActivity);
 
             }
         });
@@ -155,7 +144,7 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
         }
 
         time = (TextView) findViewById(R.id.editText4);
-        time.setText(formattedHour+":"+formattedMinute);
+        time.setText("um: "+formattedHour+":"+formattedMinute+" Uhr");
     }
 
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -174,7 +163,7 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
 
             formattedDayOfMonth = "0" + dayOfMonth;
         }
-        eventDate.setText(year + "-" + formattedMonth + "-" + formattedDayOfMonth);
+        eventDate.setText("am: " + formattedDayOfMonth + "-" + formattedMonth + "-" + year);
 
        // eventDate.setText(year+"-"+month+"-"+day);
     }

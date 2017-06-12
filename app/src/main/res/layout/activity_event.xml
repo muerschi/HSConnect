@@ -34,7 +34,6 @@
         android:text="@string/date"
         style="@style/EventEditText"
         android:onClick="showDatePickerDialog"
-        android:textAlignment="center"
         android:textSize="20dp"
         />
 
@@ -43,7 +42,6 @@
         android:text="@string/time"
         style="@style/EventEditText"
         android:onClick="showTimePickerDialog"
-        android:textAlignment="center"
         android:textSize="20dp"
         />
 

@@ -18,24 +18,7 @@ public class EventInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_info);
 
-
-        String evTitle = "";
-        String evLocation = "";
-        String evDate = "";
-        String evDescription = "";
-        String evTime = "";
-
         final Bundle extras = getIntent().getExtras();
-
-        if (extras != null) {
-            /* unnötig, kann direkt gespeichert werden
-            evTitle = extras.getString("eventTitle");
-            evLocation = extras.getString("eventLocation");
-            evDate = extras.getString("eventDate");
-            evTime = extras.getString("eventTime");
-            evDescription = extras.getString("eventDescription");
-            */
-        }
 
         TextView eventTitle = (TextView) findViewById(R.id.titleEvent);
         TextView eventLocation = (TextView) findViewById(R.id.locationEvent);
@@ -64,6 +47,7 @@ public class EventInfo extends AppCompatActivity {
                 newEventActivity.putExtra("eventDate", extras.getString("eventDate"));
                 newEventActivity.putExtra("eventTime", extras.getString("eventTime"));
                 newEventActivity.putExtra("eventDescription", extras.getString("eventDescription"));
+                newEventActivity.putExtra("evID", extras.getInt("evID"));
                 //newEventActivity.putExtra("faculty", event.getFaculty());
 
                 startActivity(newEventActivity);

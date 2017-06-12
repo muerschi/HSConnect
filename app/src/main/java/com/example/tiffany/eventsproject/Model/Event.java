@@ -12,6 +12,15 @@ public class Event {
     private String title, location, description;
     private String faculty, eventDate, time;
     private Date date;
+    private int evID;
+
+    public void setId(int id) {
+        this.evID = id;
+    }
+
+    public int getId() {
+        return this.evID;
+    }
 
     public void setTitle(String title) {
         this.title = title;
