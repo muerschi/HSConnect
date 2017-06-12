@@ -10,8 +10,8 @@ import java.util.Date;
 public class Event {
 
     private String title, location, description;
-    private String faculty;
-    private Date date, eventDate;
+    private String faculty, eventDate, time;
+    private Date date;
 
     public void setTitle(String title) {
         this.title = title;
@@ -45,11 +45,11 @@ public class Event {
         return this.faculty;
     }
 
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
 
-    public Date getEventDate() {
+    public String getEventDate() {
         return this.eventDate;
     }
 
@@ -57,5 +57,9 @@ public class Event {
         this.date = new Date();
         return this.date;
     }
+
+    public void setTime (String time ) { this.time = time; }
+
+    public String getTime () { return this.time; }
 }
 
