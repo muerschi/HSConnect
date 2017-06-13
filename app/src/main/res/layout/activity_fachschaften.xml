@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tiffany.eventsproject.FachschaftenActivity">
+
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Wähle eine Fachschaft"
+            android:fontFamily="sans-serif"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp">
+
+                <TableRow style="@style/ProfilTableRow">
+
+                    <Button
+                        android:id="@+id/btFSN"
+                        style="@style/FachschaftButtonDunkel"
+                        android:text="N" />
+
+                    <Button
+                        android:id="@+id/btFSI"
+                        style="@style/FachschaftButtonHell"
+                        android:text="I" />
+                </TableRow>
+
+                <TableRow style="@style/ProfilTableRow">
+
+                    <Button
+                        android:id="@+id/btFSE"
+                        style="@style/FachschaftButtonHell"
+                        android:text="E" />
+
+                    <Button
+                        android:id="@+id/btFSW"
+                        style="@style/FachschaftButtonDunkel"
+                        android:text="W" />
+
+
+                </TableRow>
+
+
+                <TableRow style="@style/ProfilTableRow">
+
+                    <Button
+                        android:id="@+id/btFSV"
+                        style="@style/FachschaftButtonDunkel"
+                        android:text="V" />
+
+                    <Button
+                        android:id="@+id/btFSG"
+                        style="@style/FachschaftButtonHell"
+                        android:text="G" />
+
+                </TableRow>
+
+                <TableRow style="@style/ProfilTableRow">
+
+                    <Button
+                        android:id="@+id/btFSM"
+                        style="@style/FachschaftButtonHell"
+                        android:elevation="10dp"
+                        android:text="M" />
+
+                    <Button
+                        android:id="@+id/btFSS"
+                        style="@style/FachschaftButtonDunkel"
+                        android:text="S" />
+
+
+                </TableRow>
+
+
+            </TableLayout>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

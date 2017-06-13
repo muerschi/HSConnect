@@ -64,11 +64,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 import com.example.tiffany.eventsproject.Helper.ServerConnection;
 import com.example.tiffany.eventsproject.Helper.SessionManager;
 import com.example.tiffany.eventsproject.Model.User;
+import com.google.gson.JsonSyntaxException;
 
 import static android.Manifest.permission.READ_CONTACTS;
 import static android.R.attr.host;
@@ -343,7 +345,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, List<Boolean>> {
 
         private final String mEmail;
         private final String mPassword;
@@ -358,34 +360,62 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected List<Boolean> doInBackground(Void... params) {
 
             // Ask server for right user credentials
             // If successfull, user gets automatically set in SessionManager
-            boolean success = connection.Login(mEmail, mPassword, mSession);
-            return success;
+            boolean success = false;
+            boolean connectionException = true;
+            try {
+                success = connection.Login(mEmail, mPassword, mSession);
+                connectionException = false;
+                }catch(JsonSyntaxException ex){
+                // If Logins are wrong, json is empty, jsonsyntaxexception is thrown. It is prooved in onPostExecute()
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                connectionException = false;
+                }
+
+            List<Boolean> returnParams= new ArrayList<>();
+            returnParams.add(success);
+            returnParams.add(connectionException);
+            return returnParams;
 
         }
 
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(final List<Boolean> success) {
             mAuthTask = null;
             showProgress(false);
 
-            if (success) {
+
+            if (success.get(0)) {
 
                 // Staring MainActivity
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
-
-
                 finish();
-            } else {
+            }else{
 
-                // If login failed, Ask user for rigth username and password
+                if(!success.get(1)){
+                    AlertDialog.Builder alt_bld = new AlertDialog.Builder(LoginActivity.this);
+                    alt_bld.setMessage("Please try again later.")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // Action for 'Yes' Button
+                                }
+                            });
+                    AlertDialog alert = alt_bld.create();
+                    // Title for AlertDialog
+                    alert.setTitle("Connection Error");
+                    alert.show();
+                }else{
                 AlertDialog.Builder alt_bld = new AlertDialog.Builder(LoginActivity.this);
-                alt_bld.setMessage("Please Enter Valid credentials")
+                alt_bld.setMessage("Please enter valid credentials")
                         .setCancelable(false)
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -394,10 +424,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         });
                 AlertDialog alert = alt_bld.create();
                 // Title for AlertDialog
-                alert.setTitle("Wrong Login Credentials");
+                alert.setTitle("Wrong User Credentials");
                 alert.show();
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                }
             }
         }
 
