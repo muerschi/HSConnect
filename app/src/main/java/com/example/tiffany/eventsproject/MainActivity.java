@@ -1,6 +1,7 @@
 package com.example.tiffany.eventsproject;
 
 import android.content.Intent;
+import android.content.pm.PackageInstaller;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.example.tiffany.eventsproject.Helper.SessionManager;
+
+import java.util.HashMap;
 
 import com.example.tiffany.eventsproject.Helper.HttpGetEvent;
 
@@ -20,6 +26,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private EventActivity evActivity;
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +35,20 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        session = new SessionManager(getApplicationContext());
 
+        // check Login will redirect user back to LoginActivity, if he is not logged in.
+        session.checkLogin();
+        HashMap<String,String> user = session.getUserDetails();
+        Toast.makeText(getApplicationContext(), "User logged in: " + user.get(SessionManager.KEY_NAME), Toast.LENGTH_LONG).show();
+
+        // coming from EventActivity
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Toast.makeText(getApplicationContext(),
+                    extras.getString("result"), Toast.LENGTH_SHORT)
+                    .show();
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +101,11 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }else if( id == R.id.action_logout){
+            session.logoutUser();
+        }else if( id == R.id.action_profil){
+            Intent newProfilActivity = new Intent(MainActivity.this, ProfilActivity.class);
+            startActivity(newProfilActivity);
         }
 
         return super.onOptionsItemSelected(item);
@@ -93,9 +118,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent newEventActivity = new Intent(MainActivity.this, EventActivity.class);
+            startActivity(newEventActivity);
         } else if (id == R.id.nav_gallery) {
-
+            Intent newEventActivity = new Intent(MainActivity.this, MensaplanActivity.class);
+            startActivity(newEventActivity);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

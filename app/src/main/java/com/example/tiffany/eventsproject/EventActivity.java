@@ -3,8 +3,10 @@ package com.example.tiffany.eventsproject;
 import com.example.tiffany.eventsproject.Helper.HttpPostEvent;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +39,7 @@ import org.w3c.dom.Text;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 import static com.example.tiffany.eventsproject.Helper.SessionManager.KEY_FACULTY;
@@ -85,10 +88,57 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
 
         final Button button = (Button) findViewById(R.id.save);
         button.setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View v)  {
                 // Send Data
                 // Use SessionManager session to get faculty without having to choose
-                Event ev = new Event();
+
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(EventActivity.this);
+                builder1.setMessage("Möchten Sie das Event wirklich speichern?");
+                builder1.setCancelable(true);
+
+                builder1.setPositiveButton(
+                        "Ja",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Event ev = new Event();
+                                // set those to a new Event Object
+                                ev.setTitle(eventTitle.getText().toString());
+                                ev.setDescription(description.getText().toString());
+                                ev.setEventDate(eventDate.getText().toString());
+                                ev.setTime(time.getText().toString());
+                                // ev.setFaculty(session.getUserDetails().get(KEY_FACULTY));
+                                ev.setLocation(location.getText().toString());
+                                if (extras != null)
+                                    ev.setId(extras.getInt("evID"));
+
+                                new HttpPostEvent(ev) {
+
+                                    @Override
+                                    public void onPostExecute(String result) {
+
+                                        super.onPostExecute(result);
+
+                                        Intent newEventActivity = new Intent(EventActivity.this, MainActivity.class);
+                                        newEventActivity.putExtra("result", result);
+                                        startActivity(newEventActivity);
+                                    }
+                                }.execute();
+
+
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "Nein",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
                 // get texts from EditTexts & TextViews (for Date & Time)
                 /*
                 eventTitle = (EditText) findViewById(R.id.editText1);
@@ -97,20 +147,6 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
                 time = (TextView) findViewById(R.id.editText4);
                 description = (EditText) findViewById(R.id.editText5);
                 */
-
-                // set those to a new Event Object
-                ev.setTitle(eventTitle.getText().toString());
-                ev.setDescription(description.getText().toString());
-                ev.setEventDate(eventDate.getText().toString());
-                ev.setTime(time.getText().toString());
-                // ev.setFaculty(session.getUserDetails().get(KEY_FACULTY));
-                ev.setLocation(location.getText().toString());
-                ev.setId(extras.getInt("evID"));
-
-                new HttpPostEvent(ev).execute();
-
-                Intent newEventActivity = new Intent(EventActivity.this, EventActivity.class);
-                startActivity(newEventActivity);
 
             }
         });

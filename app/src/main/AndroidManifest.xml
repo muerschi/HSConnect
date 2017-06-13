@@ -29,8 +29,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".MainActivityFragment" />
         <activity android:name=".EventInfo"></activity>
+
+        <activity android:name=".MensaplanActivity" />
+        <activity android:name=".ProfilActivity"></activity>
+
     </application>
 
 </manifest>

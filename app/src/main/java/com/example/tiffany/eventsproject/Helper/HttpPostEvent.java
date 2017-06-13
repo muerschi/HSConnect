@@ -44,7 +44,7 @@ public class HttpPostEvent extends AsyncTask <Void, Integer, String>{
 
         // send Json to PMAWebServer
         try {
-            httpPost = new HttpPost("http://141.19.164.162:8080/PMAWebServer/event");
+            httpPost = new HttpPost("http://141.19.164.166:8080/PMAWebServer/event");
             String postString = js.toJson(ev);
             // data
             httpPost.setEntity(new StringEntity(js.toJson(ev)));
@@ -66,6 +66,6 @@ public class HttpPostEvent extends AsyncTask <Void, Integer, String>{
             e.printStackTrace();
         }
 
-        return "Worked";
+        return "Das Event wurde gespeichert";
     }
 }
