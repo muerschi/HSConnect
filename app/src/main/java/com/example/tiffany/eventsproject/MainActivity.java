@@ -88,8 +88,6 @@ public class MainActivity extends AppCompatActivity
         TextView lblNavEmail = (TextView) hView.findViewById(R.id.lblNavEmail);
         lblNavName.setText(user.get(SessionManager.KEY_NAME));
         lblNavEmail.setText(user.get(SessionManager.KEY_EMAIL));
-
-
     }
 
     @Override

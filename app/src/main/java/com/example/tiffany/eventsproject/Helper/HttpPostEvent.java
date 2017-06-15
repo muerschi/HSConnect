@@ -51,12 +51,12 @@ public class HttpPostEvent extends AsyncTask <Void, Integer, String>{
         try {
 
             if (decision == "delete") {
-                httpPost = new HttpPost("http://141.19.164.169:8080/PMAWebServer/delete");
+                httpPost = new HttpPost("http://141.19.177.56:8080/PMAWebServer/delete");
                 answer = "Das Event wurde gelöscht";
             }
 
             else if (decision == "add" || decision == "update") {
-                httpPost = new HttpPost("http://141.19.177.55:8080/PMAWebServer/event");
+                httpPost = new HttpPost("http://141.19.177.56:8080/PMAWebServer/event");
                 answer = "Das Event wurde gespeichert";
             }
 
