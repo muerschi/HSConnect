@@ -17,30 +17,31 @@
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:background="@drawable/ic_hs_campus"
+            android:padding="5dp"
             tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp"
-            android:padding="5dp">
+            tools:layout_editor_absoluteY="0dp">
 
             <TextView
                 android:id="@+id/fsprofil_letter"
                 style="@style/EventEditText"
                 android:layout_above="@+id/fsprofil_name"
-                android:gravity="bottom"
-                android:textSize="40dp"
-                android:textStyle="bold"
                 android:layout_marginBottom="-1dp"
-                android:textColor="@color/yellow"/>
+                android:gravity="bottom"
+                android:textColor="@color/yellow"
+                android:textSize="40dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/fsprofil_name"
                 style="@style/EventEditText"
                 android:layout_alignParentBottom="true"
-                android:layout_marginTop="-5dp"
                 android:layout_marginBottom="-1dp"
-                android:textSize="11dp"
+                android:layout_marginTop="-5dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
+
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,11 +52,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="5dp"
-                >
+                android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/address1"
+                    android:id="@+id/fsprofil_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_corner"
@@ -63,80 +63,74 @@
                     android:inputType="textMultiLine"
                     android:maxLines="30"
                     android:padding="20dp"
-                    android:text="Hallihallo Studierenden,\n wir sind Eure Fachschaft und werden Euch Euer Studium mit Events und sozialen Kontakten bereichern! \nHabt Ihr Fragen, lasst es uns wissen.\nNehmt über Email doch direkt mit uns Kontakt auf oder schaut mal bei unserer Facebook-Seite oder Homepage vorbei! \n\nFrohes Studieren! Eure Fachschaft!" />
+                    android:text="Hallo Studenten, hier findet ihr alle Informationen zu Eurer Fachschaft!"/>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
                     android:padding="10dp">
 
                     <ImageView
-                    android:id="@+id/fs_image_sprecher"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/ic_person_black_48dp"
-                    android:layout_marginLeft="3dip"
-                    android:scaleType="center"/>
+                        android:id="@+id/fs_image_sprecher"
+                        style="@style/fsImageView"
+                        android:src="@drawable/ic_person_black_40dp" />
 
                     <TextView
                         android:id="@+id/fsprofil_email"
                         style="@style/fsText"
-                        android:layout_marginTop="30dp" />
+                        android:layout_toRightOf="@+id/fs_image_sprecher" />
 
-                </LinearLayout>
-                <LinearLayout
+                </RelativeLayout>
 
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
                     android:padding="10dp">
-                    <ImageView
 
+                    <ImageView
                         android:id="@+id/fs_image_member"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/ic_supervisor_account_black_48dp"
-                        android:layout_marginLeft="3dip"
-                        android:scaleType="center"/>
+                        style="@style/fsImageView"
+                        android:src="@drawable/ic_supervisor_account_black_48dp" />
+
                     <TextView
                         android:id="@+id/fsprofil_member"
-                        style="@style/fsText" />
-                </LinearLayout>
-               <LinearLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:orientation="horizontal"
-                   android:layout_gravity="center_horizontal"
-                   android:padding="10dp">
+                        style="@style/fsText"
+                        android:layout_toRightOf="@+id/fs_image_member" />
 
-                   <ImageView
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
-                       android:id="@+id/fs_image_adress"
-                       android:layout_width="70dp"
-                       android:layout_height="70dp"
-                       android:src="@drawable/ic_pin_drop_black_48dp"
-                       android:layout_marginLeft="3dip"
-                       android:scaleType="center"/>
-                   <TextView
-                       android:id="@+id/fsprofil_adresse"
-                       style="@style/fsText"
-                       />
+                    <ImageView
+                        android:id="@+id/fs_image_adress"
+                        style="@style/fsImageView"
+                        android:src="@drawable/ic_pin_drop_black_48dp" />
 
-               </LinearLayout>
+                    <TextView
+                        android:id="@+id/fsprofil_adresse"
+                        style="@style/fsText"
+                        android:layout_toRightOf="@+id/fs_image_adress" />
+
+                </RelativeLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
                     tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="0dp"
-                    android:layout_marginBottom="10dp">
+                    tools:layout_editor_absoluteY="0dp">
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/fltbt_fsEmail"
@@ -144,8 +138,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|end"
                         android:layout_margin="@dimen/fab_margin"
-                        app:srcCompat="@android:drawable/ic_dialog_email"
-                        android:visibility="invisible"/>
+                        android:visibility="invisible"
+                        app:srcCompat="@android:drawable/ic_dialog_email" />
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/fltbt_fsWeb"
@@ -153,9 +147,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|end"
                         android:layout_margin="@dimen/fab_margin"
-                        app:srcCompat="@drawable/ic_public_black_24dp"
                         android:tint="@color/white"
-                        android:visibility="invisible"/>
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/ic_public_black_24dp" />
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/fltbt_fsFacebook"
@@ -163,8 +157,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|end"
                         android:layout_margin="@dimen/fab_margin"
-                        app:srcCompat="@drawable/facebook"
-                        android:visibility="invisible"/>
+                        android:tint="@color/white"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/facebook" />
 
                 </LinearLayout>
             </LinearLayout>

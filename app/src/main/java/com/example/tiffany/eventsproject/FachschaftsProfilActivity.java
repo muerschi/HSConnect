@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tiffany.eventsproject.Helper.FachschaftenManager;
@@ -49,10 +50,10 @@ public class FachschaftsProfilActivity extends AppCompatActivity {
         try {
             fachschaft = fsManager.getFachschaft(fachschafts_name);
 
-
+            TextView lblDescription = (TextView) findViewById(R.id.fsprofil_description);
             TextView lblName = (TextView) findViewById(R.id.fsprofil_name);
             TextView lblLetter = (TextView) findViewById(R.id.fsprofil_letter);
-            TextView lblEmail = (TextView) findViewById(R.id.fsprofil_email);
+            TextView lblFsSprecher = (TextView) findViewById(R.id.fsprofil_email);
             TextView lblAdress = (TextView) findViewById(R.id.fsprofil_adresse);
             TextView lblMember = (TextView) findViewById(R.id.fsprofil_member);
 
@@ -61,12 +62,31 @@ public class FachschaftsProfilActivity extends AppCompatActivity {
             FloatingActionButton fltbt_fsFacebook = (FloatingActionButton) findViewById(R.id.fltbt_fsFacebook);
             FloatingActionButton fltbt_fsEmail = (FloatingActionButton) findViewById(R.id.fltbt_fsEmail);
 
+            ImageView img_fssprecher = (ImageView) findViewById(R.id.fs_image_sprecher);
+            ImageView img_member = (ImageView) findViewById(R.id.fs_image_member);
+            ImageView img_adress = (ImageView) findViewById(R.id.fs_image_adress);
 
-            lblLetter.setText(Html.fromHtml("<b> Fachschaft " + fachschaft.getName() + "</b>"));
+
             lblName.setText(Html.fromHtml("Institut für <b>" + fachschaft.getFaculty() + "</b>"));
-            lblEmail.setText(Html.fromHtml("Fachschaftssprecher: <b>" + fachschaft.getFsSprecher() + "</b>"));
-            lblAdress.setText(Html.fromHtml("Adresse: <b>" + fachschaft.getAdress() + "</b>"));
-            lblMember.setText(Html.fromHtml("FachschaftsMitglieder: <b>" + fachschaft.getMember() + "</b>"));
+            lblLetter.setText(Html.fromHtml("<b> Fachschaft " + fachschaft.getName() + "</b>"));
+
+
+            if (fachschaft.getDescription() != null) {
+                lblDescription.setText(Html.fromHtml(fachschaft.getDescription()));
+            }
+
+            if (fachschaft.getFsSprecher() != null) {
+                img_fssprecher.setVisibility(View.VISIBLE);
+                lblFsSprecher.setText(Html.fromHtml("Fachschaftssprecher: <b>" + fachschaft.getFsSprecher() + "</b>"));
+            }
+            if (fachschaft.getMember() != null) {
+                img_member.setVisibility(View.VISIBLE);
+                lblMember.setText(Html.fromHtml("FachschaftsMitglieder: <b>" + fachschaft.getMember() + "</b>"));
+            }
+            if (fachschaft.getAdress() != null) {
+                img_adress.setVisibility(View.VISIBLE);
+                lblAdress.setText(Html.fromHtml("Adresse: <b>" + fachschaft.getAdress() + "</b>"));
+            }
 
 
             if (fachschaft.getWebsite() != null) {
@@ -100,7 +120,6 @@ public class FachschaftsProfilActivity extends AppCompatActivity {
             });
 
 
-
             fltbt_fsFacebook.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -130,49 +149,13 @@ public class FachschaftsProfilActivity extends AppCompatActivity {
 
         } catch (Exception e) {
 
-            // If login failed, Ask user for rigth username and password
-            AlertDialog.Builder alt_bld = new AlertDialog.Builder(FachschaftsProfilActivity.this);
-            alt_bld.setMessage("No Data availiable. Please sync first!")
-                    .setCancelable(false)
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // Action for 'Yes' Button
-                        }
-                    });
-            AlertDialog alert = alt_bld.create();
-            // Title for AlertDialog
-            alert.setTitle("Datenabfrage");
-            alert.show();
-        }
-
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.fs_profil, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.btn_sync) {
+            // Daten konnten nicht aus SharedPreferences geladen werden -> werden neu von Server geladen
             mSyncTask = new SyncTask();
             mSyncTask.execute((Void) null);
+
         }
 
-        return super.onOptionsItemSelected(item);
     }
-
 
     public class SyncTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -198,7 +181,7 @@ public class FachschaftsProfilActivity extends AppCompatActivity {
 
                 // If login failed, Ask user for rigth username and password
                 AlertDialog.Builder alt_bld = new AlertDialog.Builder(FachschaftsProfilActivity.this);
-                alt_bld.setMessage("Please Enter Valid credentials")
+                alt_bld.setMessage("Keine Verbindung zu Server")
                         .setCancelable(false)
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -207,7 +190,7 @@ public class FachschaftsProfilActivity extends AppCompatActivity {
                         });
                 AlertDialog alert = alt_bld.create();
                 // Title for AlertDialog
-                alert.setTitle("Sync Failed");
+                alert.setTitle("Synchronisierung schlug fehl!");
                 alert.show();
             }
         }

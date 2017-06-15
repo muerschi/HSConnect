@@ -4,7 +4,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@android:drawable/ic_menu_my_calendar"
+            android:icon="@drawable/ic_events"
+            android:tint="@color/white"
             android:title="Events" />
         <item
             android:id="@+id/nav_gallery"

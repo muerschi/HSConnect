@@ -41,7 +41,6 @@ import java.util.List;
 
 public class ServerConnection {
 
-    private static String WEBSERVER_IP= "http://141.19.177.56:8080/PMAWebServer";
     HttpPost httppost = null;
     HttpClient httpclient = null;
 
@@ -64,7 +63,8 @@ public class ServerConnection {
 
     public boolean Login(String email, String password, SessionManager session) throws IOException {
         try {
-            httppost = new HttpPost( WEBSERVER_IP + "/login");            List<NameValuePair> namevaluepairs = new ArrayList<NameValuePair>(2);
+            httppost = new HttpPost( Global.WEBSERVER_IP + "/login");
+            List<NameValuePair> namevaluepairs = new ArrayList<NameValuePair>(2);
             namevaluepairs.add(new BasicNameValuePair("email", email));
             namevaluepairs.add(new BasicNameValuePair("password", password));
             try {
@@ -114,7 +114,7 @@ public class ServerConnection {
    public boolean Fachschaften(FachschaftenManager fsManager) {
 
                     try {
-                        httppost = new HttpPost( WEBSERVER_IP + "/fachschaft");
+                        httppost = new HttpPost( Global.WEBSERVER_IP + "/fachschaft");
 
                         HttpResponse response = httpclient.execute(httppost);
                         HttpEntity rp = response.getEntity();

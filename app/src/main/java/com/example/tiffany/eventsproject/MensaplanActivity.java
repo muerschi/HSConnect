@@ -30,8 +30,8 @@ public class MensaplanActivity extends AppCompatActivity {
             webSettings.setJavaScriptEnabled(true);
             mWebView.loadUrl("https://www.stw-ma.de/Essen+_+Trinken/Men%C3%BCpl%C3%A4ne/Hochschule+Mannheim.html");
         }catch(Exception e){
-            TextView lblMenuNotAvailiable = (TextView) findViewById(R.id.lblMenuNotAvailiable);
-            lblMenuNotAvailiable.setVisibility(View.VISIBLE);
+            //TextView lblMenuNotAvailiable = (TextView) findViewById(R.id.lblMenuNotAvailiable);
+            //lblMenuNotAvailiable.setVisibility(View.VISIBLE);
         }
 
         mWebView.setWebChromeClient(new WebChromeClient() {

@@ -22,7 +22,7 @@ enum Faculty_Letter
 public class Fachschaft {
     private Long id;
     private Faculty_Letter name;
-    private String fsSprecher, member, adress, email, facebook, website;
+    private String fsSprecher, member, adress, email, facebook, website, description;
     private Faculty faculty;
 
 
@@ -98,6 +98,14 @@ public class Fachschaft {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

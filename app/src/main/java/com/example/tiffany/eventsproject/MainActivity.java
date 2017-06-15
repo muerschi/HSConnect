@@ -5,6 +5,7 @@ import android.content.pm.PackageInstaller;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity
         // check Login will redirect user back to LoginActivity, if he is not logged in.
         session.checkLogin();
         user = session.getUserDetails();
+
         Toast.makeText(getApplicationContext(), "User logged in: " + user.get(SessionManager.KEY_NAME), Toast.LENGTH_LONG).show();
 
         // coming from EventActivity
@@ -102,12 +104,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -115,14 +115,9 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }else if( id == R.id.action_logout){
+
+        if( id == R.id.action_logout){
             session.logoutUser();
-        }else if( id == R.id.action_profil){
-            Intent newProfilActivity = new Intent(MainActivity.this, ProfilActivity.class);
-            startActivity(newProfilActivity);
         }
 
         return super.onOptionsItemSelected(item);
@@ -135,7 +130,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent newEventActivity = new Intent(MainActivity.this, EventActivity.class);
+            Intent newEventActivity = new Intent(MainActivity.this, MainActivity.class);
             startActivity(newEventActivity);
         } else if (id == R.id.nav_gallery) {
             Intent newEventActivity = new Intent(MainActivity.this, MensaplanActivity.class);
@@ -144,7 +139,8 @@ public class MainActivity extends AppCompatActivity
             Intent newEventActivity = new Intent(MainActivity.this, FachschaftenActivity.class);
             startActivity(newEventActivity);
         } else if (id == R.id.nav_manage) {
-
+            Intent newProfilActivity = new Intent(MainActivity.this, ProfilActivity.class);
+            startActivity(newProfilActivity);
         } else if (id == R.id.nav_share) {
 
         }
