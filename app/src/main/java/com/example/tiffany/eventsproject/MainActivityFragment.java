@@ -39,7 +39,6 @@ public class MainActivityFragment extends Fragment {
                      e.printStackTrace();
                  }
 
-                // Do something with result here
             }
         }.execute();
 
@@ -49,76 +48,8 @@ public class MainActivityFragment extends Fragment {
 
         getEvents();
 
-        // Construct the data source
-
-        /*
-        Event e1 = new Event();
-        Event e2 = new Event();
-        Event e3 = new Event();
-        Event e4 = new Event();
-        Event e5 = new Event();
-        Event e6 = new Event();
-        Event e7 = new Event();
-        Event e8 = new Event();
-
-        e1.setTitle("Huhu");
-        e1.setLocation("Kuckuck");
-        e1.setTime("Kurz vor Naggüsch");
-
-        e2.setTitle("Huhu2");
-        e2.setLocation("Kuckuck2");
-        e2.setTime("Kurz vor Naggüsch2");
-
-        e3.setTitle("Huhu2");
-        e3.setLocation("Kuckuck2");
-        e3.setTime("Kurz vor Naggüsch2");
-
-        e4.setTitle("Huhu2");
-        e4.setLocation("Kuckuck2");
-        e4.setTime("Kurz vor Naggüsch2");
-
-        e5.setTitle("Huhu2");
-        e5.setLocation("Kuckuck2");
-        e5.setTime("Kurz vor Naggüsch2");
-
-        e6.setTitle("Huhu2");
-        e6.setLocation("Kuckuck2");
-        e6.setTime("Kurz vor Naggüsch2");
-
-        e7.setTitle("Huhu2");
-        e7.setLocation("Kuckuck2");
-        e7.setTime("Kurz vor Naggüsch2");
-
-        e8.setTitle("Huhu2");
-        e8.setLocation("Kuckuck2");
-        e8.setTime("Kurz vor Naggüsch2");
-
-        arrayOfEvents.add(e1);
-        arrayOfEvents.add(e2);
-        arrayOfEvents.add(e3);
-        arrayOfEvents.add(e4);
-        arrayOfEvents.add(e5);
-        arrayOfEvents.add(e6);
-        arrayOfEvents.add(e7);
-        arrayOfEvents.add(e8);
-
-*/
-
         rootView = inflater.inflate(R.layout.activity_main_fragment, container, false);
 
-        /*
-        EventAdapter adapter = new EventAdapter(getContext(), arrayOfEvents);
-        // Attach the adapter to a ListView
-
-
-        try {
-            ListView listView = (ListView) rootView.findViewById(R.id.customEventView);
-            listView.setAdapter(adapter);
-        } catch (NullPointerException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        */
         return rootView;
 
     }

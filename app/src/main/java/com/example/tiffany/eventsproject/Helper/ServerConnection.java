@@ -41,7 +41,7 @@ import java.util.List;
 
 public class ServerConnection {
 
-    private static String WEBSERVER_IP= "http://141.19.177.56:8080/PMAWebServer";
+    private static String WEBSERVER_IP= "http://141.19.164.182:8080/PMAWebServer";
     HttpPost httppost = null;
     HttpClient httpclient = null;
 

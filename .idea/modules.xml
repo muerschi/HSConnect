@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EventsLoginProject.iml" filepath="$PROJECT_DIR$/EventsLoginProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HSConnect.iml" filepath="$PROJECT_DIR$/HSConnect.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
