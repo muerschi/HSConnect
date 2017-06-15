@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by Ich on 09.06.2017.
+ * Created by Nina on 09.06.2017.
  */
 
 public class FachschaftenManager {

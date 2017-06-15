@@ -2,7 +2,7 @@ package com.example.tiffany.eventsproject.Helper;
 
 
 /**
- * Created by Ich on 02.06.2017.
+ * Created by Nina on 02.06.2017.
  */
 // Copied from: http://www.androidhive.info/2012/08/android-session-management-using-shared-preferences/
 import java.util.HashMap;

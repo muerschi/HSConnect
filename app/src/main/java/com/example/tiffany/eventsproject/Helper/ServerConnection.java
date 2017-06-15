@@ -36,7 +36,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Ich on 02.06.2017.
+ * Created by Nina on 02.06.2017.
  */
 
 public class ServerConnection {

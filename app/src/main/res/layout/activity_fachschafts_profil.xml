@@ -153,7 +153,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|end"
                         android:layout_margin="@dimen/fab_margin"
-                        app:srcCompat="@drawable/ic_web"
+                        app:srcCompat="@drawable/ic_public_black_24dp"
+                        android:tint="@color/white"
                         android:visibility="invisible"/>
 
                     <android.support.design.widget.FloatingActionButton
