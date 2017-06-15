@@ -1,5 +1,7 @@
 package com.example.tiffany.eventsproject;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -18,11 +20,17 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.List;
+
 public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
     GoogleMap mGoogleMap;
     MapView mMapView;
     View mView;
+    String evAddress = "Mannheim";
+    LatLng latLng = null;
+
 
     private GoogleMap mMap;
 
@@ -32,6 +40,8 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        //evAddress = getArguments().getString("evAdr");
         mView = inflater.inflate(R.layout.activity_maps, container, false);
         return mView;
     }
@@ -61,9 +71,26 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(getContext());
         mGoogleMap = googleMap;
+
+        List<Address> addressList = null;
+
+        if (evAddress != null || !evAddress.equals("")) {
+            Geocoder geocoder = new Geocoder(getContext());
+
+            try {
+                addressList = geocoder.getFromLocationName(evAddress, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Address address = addressList.get(0);
+            latLng = new LatLng(address.getLatitude(), address.getLongitude());
+        }
+
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.68927, -74.044502)).title("State of Liberty")) .setSnippet("I hope you go there");
-        CameraPosition liberty = CameraPosition.builder().target(new LatLng(40.68927, -74.044502)).zoom(16).bearing(0).tilt(45).build();
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(liberty));;
+        googleMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
+       // CameraPosition liberty = CameraPosition.builder().target(new LatLng(40.68927, -74.044502)).zoom(16).bearing(0).tilt(45).build();
+        //googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(liberty));;
+        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
     }
 }
