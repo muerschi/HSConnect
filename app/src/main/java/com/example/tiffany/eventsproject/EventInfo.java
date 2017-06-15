@@ -7,11 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tiffany.eventsproject.Helper.HttpPostEvent;
 import com.example.tiffany.eventsproject.Model.Event;
 
 public class EventInfo extends AppCompatActivity {
+
+    TextView eventTitle, eventLocation, eventDate, eventTime, eventDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +23,11 @@ public class EventInfo extends AppCompatActivity {
 
         final Bundle extras = getIntent().getExtras();
 
-        TextView eventTitle = (TextView) findViewById(R.id.titleEvent);
-        TextView eventLocation = (TextView) findViewById(R.id.locationEvent);
-        TextView eventDate = (TextView) findViewById(R.id.dateEvent);
-        TextView eventTime = (TextView) findViewById(R.id.timeEvent);
-        TextView eventDescription = (TextView) findViewById(R.id.descriptionEvent);
+        eventTitle = (TextView) findViewById(R.id.titleEvent);
+        eventLocation = (TextView) findViewById(R.id.locationEvent);
+        eventDate = (TextView) findViewById(R.id.dateEvent);
+        eventTime = (TextView) findViewById(R.id.timeEvent);
+        eventDescription = (TextView) findViewById(R.id.descriptionEvent);
 
         eventTitle.setText(extras.getString("eventTitle"));
         eventLocation.setText(extras.getString("eventLocation"));
@@ -56,8 +59,22 @@ public class EventInfo extends AppCompatActivity {
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)  {
-                // Send Data
-                // Use SessionManager session to get faculty without having to choose
+                Event ev = new Event();
+
+                ev.setId(extras.getInt("evID"));
+                new HttpPostEvent(ev, "delete") {
+
+                    @Override
+                    public void onPostExecute(String result) {
+
+                        super.onPostExecute(result);
+
+                        Intent newEventActivity = new Intent(EventInfo.this, MainActivity.class);
+                        newEventActivity.putExtra("result", result);
+                        startActivity(newEventActivity);
+                    }
+                }.execute();
+
             }
         });
 

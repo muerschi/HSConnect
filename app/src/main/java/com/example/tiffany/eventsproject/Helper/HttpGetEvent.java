@@ -42,7 +42,7 @@ public class HttpGetEvent extends AsyncTask <Void, Void, ArrayList<Event>> {
 
         try {
             httpClient = new DefaultHttpClient();
-            httpGet = new HttpGet("http://141.19.164.166:8080/PMAWebServer/event");
+            httpGet = new HttpGet("http://141.19.177.55:8080/PMAWebServer/event");
             response = httpClient.execute(httpGet);
             InputStream content = response.getEntity().getContent();
 

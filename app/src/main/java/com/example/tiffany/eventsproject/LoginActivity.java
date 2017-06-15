@@ -377,6 +377,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 // Staring MainActivity
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
+              //  i.putExtra("result", "Willkommen "+user.get(SessionManager.KEY_NAME).toString());
                 startActivity(i);
 
 

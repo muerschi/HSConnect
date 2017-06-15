@@ -64,26 +64,24 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
 
         final Bundle extras = getIntent().getExtras();
 
+        // if user edits an Event
         if (extras != null) {
 
-            String evTitle = "";
-            String evLocation = "";
-            String evDate = "";
-            String evDescription = "";
-            String evTime = "";
+            eventTitle.setText(extras.getString("eventTitle"));
+            location.setText(extras.getString("eventLocation"));
+            eventDate.setText(extras.getString("eventDate"));
+            time.setText(extras.getString("eventTime"));
+            description.setText(extras.getString("eventDescription"));
+        }
 
-            evTitle = extras.getString("eventTitle");
-            evLocation = extras.getString("eventLocation");
-            evDate = extras.getString("eventDate");
-            evTime = extras.getString("eventTime");
-            evDescription = extras.getString("eventDescription");
+        // if user rotates phone
+        if (savedInstanceState != null) {
 
-            eventTitle.setText(evTitle);
-            location.setText(evLocation);
-            eventDate.setText(evDate);
-            time.setText(evTime);
-            description.setText(evDescription);
-
+            eventTitle.setText(savedInstanceState.getString("eventTitle"));
+            location.setText(savedInstanceState.getString("location"));
+            eventDate.setText(savedInstanceState.getString("eventDate"));
+            time.setText(savedInstanceState.getString("time"));
+            description.setText(savedInstanceState.getString("description"));
         }
 
         final Button button = (Button) findViewById(R.id.save);
@@ -112,7 +110,7 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
                                 if (extras != null)
                                     ev.setId(extras.getInt("evID"));
 
-                                new HttpPostEvent(ev) {
+                                new HttpPostEvent(ev, "add") {
 
                                     @Override
                                     public void onPostExecute(String result) {
@@ -139,18 +137,19 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
 
                 AlertDialog alert11 = builder1.create();
                 alert11.show();
-                // get texts from EditTexts & TextViews (for Date & Time)
-                /*
-                eventTitle = (EditText) findViewById(R.id.editText1);
-                location = (EditText) findViewById(R.id.editText2);
-                eventDate = (TextView) findViewById(R.id.editText3);
-                time = (TextView) findViewById(R.id.editText4);
-                description = (EditText) findViewById(R.id.editText5);
-                */
-
             }
         });
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString("eventTitle", eventTitle.getText().toString());
+        outState.putString("description", description.getText().toString());
+        outState.putString("eventDate", eventDate.getText().toString());
+        outState.putString("time", time.getText().toString());
+        outState.putString("location", location.getText().toString());
+        super.onSaveInstanceState(outState);
     }
 
     public void showTimePickerDialog(View v) {

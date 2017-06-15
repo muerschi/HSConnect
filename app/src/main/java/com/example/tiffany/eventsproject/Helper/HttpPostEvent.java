@@ -28,10 +28,15 @@ public class HttpPostEvent extends AsyncTask <Void, Integer, String>{
     HttpPost httpPost = null;
     HttpClient httpClient = new DefaultHttpClient();
     private Event ev;
+    private String decision;
+    private String answer="";
 
-    public HttpPostEvent (Event event) {
+    public HttpPostEvent (Event event, String decision) {
         this.ev = event;
+        this.decision = decision;
     }
+
+
     @Override
     protected String doInBackground(Void... params) {
         return sendEvent();
@@ -44,8 +49,18 @@ public class HttpPostEvent extends AsyncTask <Void, Integer, String>{
 
         // send Json to PMAWebServer
         try {
-            httpPost = new HttpPost("http://141.19.164.166:8080/PMAWebServer/event");
-            String postString = js.toJson(ev);
+
+            if (decision == "delete") {
+                httpPost = new HttpPost("http://141.19.164.169:8080/PMAWebServer/delete");
+                answer = "Das Event wurde gelöscht";
+            }
+
+            else if (decision == "add" || decision == "update") {
+                httpPost = new HttpPost("http://141.19.177.55:8080/PMAWebServer/event");
+                answer = "Das Event wurde gespeichert";
+            }
+
+           // String postString = js.toJson(ev);
             // data
             httpPost.setEntity(new StringEntity(js.toJson(ev)));
             // so Server knows what to do with it
@@ -66,6 +81,6 @@ public class HttpPostEvent extends AsyncTask <Void, Integer, String>{
             e.printStackTrace();
         }
 
-        return "Das Event wurde gespeichert";
+        return answer;
     }
 }
