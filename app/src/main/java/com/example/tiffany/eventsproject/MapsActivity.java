@@ -41,7 +41,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //evAddress = getArguments().getString("evAdr");
+        evAddress = getArguments().getString("evAdr");
         mView = inflater.inflate(R.layout.activity_maps, container, false);
         return mView;
     }

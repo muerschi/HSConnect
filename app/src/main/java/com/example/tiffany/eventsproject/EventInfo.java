@@ -21,8 +21,11 @@ public class EventInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_info);
-
         final Bundle extras = getIntent().getExtras();
+        Bundle adr = new Bundle();
+        adr.putString("evAdr", extras.getString("eventLocation"));
+        Fragment mapsFragment = new MapsActivity();
+        mapsFragment.setArguments(adr);
 
         eventTitle = (TextView) findViewById(R.id.titleEvent);
         eventLocation = (TextView) findViewById(R.id.locationEvent);
@@ -38,11 +41,6 @@ public class EventInfo extends AppCompatActivity {
 
         Button deleteBtn = (Button) findViewById(R.id.deleteBtn);
         Button editBtn = (Button) findViewById(R.id.editBtn);
-
-        Bundle adr = new Bundle();
-        adr.putString("evAdr", extras.getString("eventLocation"));
-        Fragment mapsFragment = new MapsActivity();
-        mapsFragment.setArguments(adr);
 
         editBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)  {
