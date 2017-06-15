@@ -28,5 +28,6 @@
     </string>
     <string name="hallo">hallo</string>
     <string name="fachschaftM">N\n<p><p><p><p>Maschinenbau</p></p></p></p></string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

@@ -52,10 +52,9 @@ public class MainActivity extends AppCompatActivity
         session.checkLogin();
         user = session.getUserDetails();
 
-        Toast.makeText(getApplicationContext(), "User logged in: " + user.get(SessionManager.KEY_NAME), Toast.LENGTH_LONG).show();
-
         // coming from EventActivity
         Bundle extras = getIntent().getExtras();
+
         if (extras != null) {
             Toast.makeText(getApplicationContext(),
                     extras.getString("result"), Toast.LENGTH_SHORT)

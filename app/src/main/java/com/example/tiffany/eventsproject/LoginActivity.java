@@ -38,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -403,8 +404,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             if (success.get(0)) {
 
                 // Staring MainActivity
+                HashMap<String, String> user = session.getUserDetails();
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
-              //  i.putExtra("result", "Willkommen "+user.get(SessionManager.KEY_NAME).toString());
+                i.putExtra("result", "Willkommen "+ user.get(SessionManager.KEY_NAME).toString()+"!");
                 startActivity(i);
                 finish();
             }else{
