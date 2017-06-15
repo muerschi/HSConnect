@@ -44,14 +44,10 @@ public class ProfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profil);
 
 
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-        StrictMode.setVmPolicy(builder.build());
-
         session = new SessionManager(getApplicationContext());
         TextView lblName = (TextView) findViewById(R.id.profil_username);
         TextView lblfachschaft = (TextView) findViewById(R.id.profil_fachschaft);
         TextView lblEmail = (TextView) findViewById(R.id.profil_email);
-        Button btn_addPic = (Button) findViewById(R.id.btn_addPic);
         iv_profilPic = (ImageView) findViewById(R.id.iv_profilPic);
 
 
@@ -72,115 +68,5 @@ public class ProfilActivity extends AppCompatActivity {
         lblEmail.setText(Html.fromHtml("Email: <b>" + email + "</b>"));
         lblfachschaft.setText(Html.fromHtml("Facultät: <b>" + faculty + "</b>"));
 
-        btn_addPic.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                int check = ContextCompat.checkSelfPermission(ProfilActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                if(check != PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(ProfilActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                    return;
-                }
-
-                int check2 = ContextCompat.checkSelfPermission(ProfilActivity.this, Manifest.permission.CAMERA);
-                if( check2 != PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(ProfilActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
-                    return;
-                }
-                cameraIntentSend();
-            }
-        });
-        // Add Back Button to ActionBar
-        //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        //actionBar.setHomeButtonEnabled(true);
-
     }
-
-   /* @Override
-    public void onClick(View v){
-        int check = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if(check != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-            return;
-        }
-        cameraIntentSend();
-    }
-*/
-    private void cameraIntentSend() {
-        try {
-
-            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            picFile = createPic();
-            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(picFile));
-            startActivityForResult(cameraIntent, 1); //beliebige id
-        }catch(Exception e){
-            Log.d("HSConnect", "Error while sending Picture-Intent");
-        }
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        try {
-            if (requestCode == 1 && resultCode == RESULT_OK) {
-                getContentResolver().notifyChange(Uri.fromFile(picFile), null);
-                ContentResolver cr = getContentResolver();
-
-                Bitmap bitmap;
-                try {
-
-                    bitmap = BitmapFactory.decodeFile(Uri.fromFile(picFile).getPath());
-
-                    //Wenn ihr schon eine ImageView instanziiert habt, könnt ihr hier direkt das Bild reinladen.
-                    //Ansonsten empfiehlt sich das speichern des Bildes in einer globalen Variable
-
-
-                    //Bitmap photo = (Bitmap) data.getExtras().get("data");
-                    iv_profilPic.setImageBitmap(bitmap);
-
-
-                    // Reload Page
-                    finish();
-                    startActivity(getIntent());
-
-                } catch (Exception e) {
-                    //Im Fehlerfall Meldung und LogCat Ausgabe
-                    Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
-                    Log.e("Camera", e.toString());
-                }
-            }
-
-        }catch(Exception e){}
-    }
-
-    private File createPic()throws IOException{
-        String fileName = "CameraSimple_" + System.currentTimeMillis() + ".jpg";
-        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        return new File(dir, fileName);
-    }
-
-    private boolean hasPermissionInManifest(Context context, String permissionName) {
-        final String packageName = context.getPackageName();
-        try {
-            final PackageInfo packageInfo = context.getPackageManager()
-                    .getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
-            final String[] declaredPermisisons = packageInfo.requestedPermissions;
-            if (declaredPermisisons != null && declaredPermisisons.length > 0) {
-                for (String p : declaredPermisisons) {
-                    if (p.equals(permissionName)) {
-                        return true;
-                    }
-                }
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-
-        }
-        return false;
-    }
-    /*@Override
-    public boolean onSupportNavigateUp(){
-        finish();
-        return true;
-    }*/
 }
