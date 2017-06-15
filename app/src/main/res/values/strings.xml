@@ -9,12 +9,11 @@
     <string name="action_profil">Profil</string>
     <string name="eventTitle">Event-Titel</string>
     <string name="location">Ort</string>
-    <string name="date">Datum</string>
-    <string name="time">Uhrzeit</string>
+    <string name="date">Datum auswählen</string>
+    <string name="time">Uhrzeit auswählen</string>
     <string name="description">Beschreibung</string>
     <string name="save">Speichern</string>
     <string name="title_activity_login">Sign in</string>
-
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

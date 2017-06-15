@@ -1,59 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tiffany.eventsproject.EventActivity">
+    tools:context="com.example.tiffany.eventsproject.EventActivity">-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:orientation="vertical"
         android:id="@+id/linearLayout1"
         android:layout_height="fill_parent"
-        android:layout_gravity="center_vertical|center_horizontal"
+        android:focusableInTouchMode="true"
+        android:layout_gravity="top"
         android:paddingTop="30dp"
         android:paddingBottom="30dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp">
 
-    <EditText
-        android:id="@+id/editText1"
-        android:hint="@string/eventTitle"
-        style="@style/EventEditText"
-    />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:hint="@string/location"
-        style="@style/EventEditText"
-        />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:hint="@string/date"
-        style="@style/EventEditText"
-        />
-
-    <EditText
-        android:id="@+id/editText4"
-        android:hint="@string/time"
-        style="@style/EventEditText"
-        />
-
-    <EditText
-        android:id="@+id/editText5"
-        android:hint="@string/description"
-        style="@style/EventEditText"
-        />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:text="@string/save"
-            android:layout_marginBottom="20dp"
-            android:onClick="sendMessage"
+        <EditText
+            android:id="@+id/editText1"
+            android:hint="@string/eventTitle"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            style="@style/EventEditText"
             />
 
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+        <EditText
+            android:id="@+id/editText2"
+            android:hint="@string/location"
+            android:layout_below="@+id/editText1"
+            style="@style/EventEditText"
+            />
+
+        <TextView
+            android:id="@+id/editText3"
+            android:text="@string/date"
+            style="@style/EventEditText"
+            android:layout_below="@+id/editText2"
+            android:onClick="showDatePickerDialog"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:id="@+id/editText4"
+            android:text="@string/time"
+            style="@style/EventEditText"
+            android:layout_below="@+id/editText3"
+            android:onClick="showTimePickerDialog"
+            android:textSize="20dp"
+            />
+
+        <EditText
+            android:id="@+id/editText5"
+            android:hint="@string/description"
+            android:layout_below="@+id/editText4"
+            style="@style/EventEditText"
+            />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/editText5"
+            android:text="@string/save"
+            android:layout_marginBottom="20dp"
+            />
+
+    </RelativeLayout>
+</ScrollView>

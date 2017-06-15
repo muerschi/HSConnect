@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tiffany.eventsproject.EventInfo">-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout1"
+        android:layout_height="fill_parent"
+        android:layout_gravity="top"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+    <TextView
+        android:id="@+id/titleEvent"
+        android:text="@string/date"
+        style="@style/EventEditText"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/locationEvent"
+        android:text="@string/date"
+        style="@style/EventEditText"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/dateEvent"
+        android:text="@string/date"
+        style="@style/EventEditText"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/timeEvent"
+        android:text="@string/date"
+        style="@style/EventEditText"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/descriptionEvent"
+        android:text="@string/date"
+        style="@style/EventEditText"
+        android:textSize="20dp"
+        />
+
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/editBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bearbeiten">
+            </Button>
+
+            <Button
+                android:id="@+id/deleteBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Löschen">
+            </Button>
+
+        </LinearLayout>
+
+</LinearLayout>
+</ScrollView>

@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.example.tiffany.eventsproject.Helper.HttpGetEvent;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -50,6 +52,13 @@ public class MainActivity extends AppCompatActivity
         user = session.getUserDetails();
         Toast.makeText(getApplicationContext(), "User logged in: " + user.get(SessionManager.KEY_NAME), Toast.LENGTH_LONG).show();
 
+        // coming from EventActivity
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Toast.makeText(getApplicationContext(),
+                    extras.getString("result"), Toast.LENGTH_SHORT)
+                    .show();
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +72,7 @@ public class MainActivity extends AppCompatActivity
             */
             }
         });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
