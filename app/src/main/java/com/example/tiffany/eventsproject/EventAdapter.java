@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tiffany.eventsproject.Helper.HttpGetEvent;
@@ -37,10 +38,17 @@ public class EventAdapter extends ArrayAdapter<Event> {
         TextView evTitle = (TextView) convertView.findViewById(R.id.evevTitle);
         TextView evLocation = (TextView) convertView.findViewById(R.id.evLocation);
         TextView evTime = (TextView) convertView.findViewById(R.id.evTime);
+        TextView evLetter = (TextView) convertView.findViewById(R.id.fsnLetter);
+
         // Populate the data into the template view using the data object
         evTitle.setText(event.getTitle());
         evLocation.setText("Wo? " + event.getLocation());
         evTime.setText("Wann? " + event.getEventDate());
+        evLetter.setText(event.getFaculty());
+
+
+
+
 
         CardView evCard = (CardView) convertView.findViewById(R.id.eventCard);
         evCard.setOnClickListener(new View.OnClickListener() {

@@ -2,6 +2,7 @@ package com.example.tiffany.eventsproject.Helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.ArraySet;
 
 import com.example.tiffany.eventsproject.Model.Fachschaft;
@@ -96,5 +97,17 @@ public class FachschaftenManager {
 
         // Add not found Exception
         return null;
+    }
+
+    public boolean doesExist(){
+
+        // If default value is returned, shared preferences is empty
+        if( PreferenceManager.getDefaultSharedPreferences(_context).equals(pref.getString("key","default value")))
+        {
+            return false;
+        }
+
+        return true;
+
     }
 }

@@ -41,6 +41,7 @@ import java.io.UnsupportedEncodingException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import static com.example.tiffany.eventsproject.Helper.SessionManager.KEY_FACULTY;
 import static java.lang.Long.valueOf;
@@ -51,10 +52,14 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
     EditText eventTitle, location, description;
     TextView time, eventDate;
 
+    SessionManager sessionManager = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+
+        sessionManager = new SessionManager(getApplicationContext());
 
         eventTitle = (EditText) findViewById(R.id.editText1);
         location = (EditText) findViewById(R.id.editText2);
@@ -105,7 +110,10 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
                                 ev.setDescription(description.getText().toString());
                                 ev.setEventDate(eventDate.getText().toString());
                                 ev.setTime(time.getText().toString());
-                                // ev.setFaculty(session.getUserDetails().get(KEY_FACULTY));
+
+                                HashMap<String, String> user = sessionManager.getUserDetails();
+
+                                ev.setFaculty(user.get(KEY_FACULTY));
                                 ev.setLocation(location.getText().toString());
                                 if (extras != null)
                                     ev.setId(extras.getInt("evID"));

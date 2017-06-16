@@ -35,7 +35,7 @@ public class MainActivityFragment extends Fragment {
                     ListView listView = (ListView) rootView.findViewById(R.id.customEventView);
                     listView.setAdapter(adapter);
                  } catch (NullPointerException e) {
-                    // TODO Auto-generated catch block
+
                      e.printStackTrace();
                  }
 

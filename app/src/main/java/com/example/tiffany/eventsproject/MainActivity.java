@@ -62,17 +62,22 @@ public class MainActivity extends AppCompatActivity
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if(user.get(SessionManager.KEY_ROLE).toString().equals("admin")){
+            fab.setVisibility(View.VISIBLE);
 
-                Intent newEventActivity = new Intent(MainActivity.this, EventActivity.class);
-                startActivity(newEventActivity);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent newEventActivity = new Intent(MainActivity.this, EventActivity.class);
+                    startActivity(newEventActivity);
                /* Snackbar.make(view, evActivity, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             */
-            }
-        });
+                }
+            });
+        }
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
