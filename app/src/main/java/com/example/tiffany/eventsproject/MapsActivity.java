@@ -1,5 +1,6 @@
 package com.example.tiffany.eventsproject;
 
+import android.graphics.Camera;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.app.Fragment;
@@ -28,21 +29,36 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     GoogleMap mGoogleMap;
     MapView mMapView;
     View mView;
-    String evAddress = "Mannheim";
+    String evAddress = "";
     LatLng latLng = null;
-
+    static Bundle args = null;
 
     private GoogleMap mMap;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+  //  @Override
+    /*public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }*/
+
+    public static MapsActivity newInstance(String location) {
+        MapsActivity f = new MapsActivity();
+        args = new Bundle();
+        args.putString("location", location);
+        f.setArguments(args);
+        return f;
+    }
+
+    private void readBundle(Bundle bundle) {
+        bundle = args;
+        if (bundle != null) {
+            evAddress = bundle.getString("location");
+        }
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        evAddress = getArguments().getString("evAdr");
         mView = inflater.inflate(R.layout.activity_maps, container, false);
+        readBundle(this.getArguments());
+
         return mView;
     }
 
@@ -91,6 +107,9 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         googleMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
        // CameraPosition liberty = CameraPosition.builder().target(new LatLng(40.68927, -74.044502)).zoom(16).bearing(0).tilt(45).build();
         //googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(liberty));;
-        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+      //  googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        CameraPosition newLoc = CameraPosition.builder().target(latLng).zoom(15).bearing(0).build();
+        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(newLoc));
+
     }
 }
