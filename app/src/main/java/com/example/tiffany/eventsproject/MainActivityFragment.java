@@ -24,12 +24,9 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onPostExecute( ArrayList<Event> eventsList) {
 
-                super.onPostExecute( eventsList );
+                super.onPostExecute(eventsList);
                 arrayOfEvents = eventsList;
-
-
                 EventAdapter adapter = new EventAdapter(getContext(), arrayOfEvents);
-                // Attach the adapter to a ListView
 
                  try {
                     ListView listView = (ListView) rootView.findViewById(R.id.customEventView);
@@ -47,9 +44,7 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         getEvents();
-
         rootView = inflater.inflate(R.layout.activity_main_fragment, container, false);
-
         return rootView;
 
     }

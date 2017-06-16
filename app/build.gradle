@@ -2,14 +2,16 @@ apply plugin: 'com.android.application'
 
 android {
 
-    signingConfigs {
-        EventsLoginProject {
+ // If we prefer restricted key, we have to sign app with it
+    /*signingConfigs {
+        EventsProject {
             keyAlias 'keystore'
             keyPassword 'keystore'
             storeFile file('../keystore.jks')
             storePassword 'keystore'
         }
-    }
+    }*/
+
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
