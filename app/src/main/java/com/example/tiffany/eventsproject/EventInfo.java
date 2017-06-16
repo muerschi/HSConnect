@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.example.tiffany.eventsproject.Helper.HttpPostEvent;
 import com.example.tiffany.eventsproject.Model.Event;
 
+import java.util.Map;
+
 public class EventInfo extends AppCompatActivity {
 
     TextView eventTitle, eventLocation, eventDate, eventTime, eventDescription;
@@ -20,12 +22,21 @@ public class EventInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_info);
-        final Bundle extras = getIntent().getExtras();
+
+        /*
+
         Bundle adr = new Bundle();
         adr.putString("evAdr", extras.getString("eventLocation"));
         Fragment mapsFragment = new MapsActivity();
         mapsFragment.setArguments(adr);
+        */
+        final Bundle extras = getIntent().getExtras();
+
+        // Constructor for fragment --> Pass location to fragment
+        MapsActivity mapsFragment = MapsActivity.newInstance(extras.getString("eventLocation"));
+        setContentView(R.layout.activity_event_info);
+
+
 
         eventTitle = (TextView) findViewById(R.id.titleEvent);
         eventLocation = (TextView) findViewById(R.id.locationEvent);
