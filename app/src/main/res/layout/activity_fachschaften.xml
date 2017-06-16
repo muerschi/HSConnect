@@ -17,12 +17,12 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
             android:layout_marginBottom="10dp"
             android:text="Wähle eine Fachschaft"
             android:fontFamily="sans-serif"
             android:textSize="20dp"
-            android:textStyle="bold"
             android:layout_marginLeft="10dp"/>
 
             <TableLayout
@@ -87,10 +87,7 @@
                         style="@style/FachschaftButtonDunkel"
                         android:text="S" />
 
-
                 </TableRow>
-
-
             </TableLayout>
 
     </LinearLayout>

@@ -79,6 +79,7 @@ import com.example.tiffany.eventsproject.Helper.SessionManager;
 import com.example.tiffany.eventsproject.Model.User;
 import com.google.gson.JsonSyntaxException;
 
+import static android.Manifest.permission.INTERNET;
 import static android.Manifest.permission.READ_CONTACTS;
 import static android.R.attr.host;
 import static android.R.attr.port;
@@ -162,16 +163,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return true;
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+            /*Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok, new View.OnClickListener() {
                         @Override
                         @TargetApi(Build.VERSION_CODES.M)
                         public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+                            requestPermissions(new String[]{INTERNET}, REQUEST_READ_CONTACTS);
                         }
-                    });
+                    });*/
         } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+            /*requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);*/
         }
         return false;
     }
@@ -179,6 +180,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**
      * Callback received when a permissions request has been completed.
      */
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -413,7 +415,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 if(!success.get(1)){
                     AlertDialog.Builder alt_bld = new AlertDialog.Builder(LoginActivity.this);
-                    alt_bld.setMessage("Please try again later.")
+                    alt_bld.setMessage("Bitte versuche es erneut.")
                             .setCancelable(false)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -426,7 +428,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     alert.show();
                 }else{
                 AlertDialog.Builder alt_bld = new AlertDialog.Builder(LoginActivity.this);
-                alt_bld.setMessage("Please enter valid credentials")
+                alt_bld.setMessage("Falscher Nutzername oder Passwort!")
                         .setCancelable(false)
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -64,6 +65,9 @@ public class HttpGetEvent extends AsyncTask <Void, Void, ArrayList<Event>> {
                 Event e = gson.fromJson(array.getString(i), Event.class);
                 eventList.add(e);
             }
+
+            // Um die Events nach Erstellungsdatum zu ordnen, drehen wir sie
+            Collections.reverse(eventList);
 
         } catch (JSONException e) {
             throw new RuntimeException(e);

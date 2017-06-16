@@ -61,8 +61,8 @@
         <item name="android:onClick">onClick</item>
         <item name="android:background">@color/paleTourquise3</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">60dp</item>
+        <item name="android:textSize">80dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
 
     </style>
 
@@ -73,8 +73,8 @@
         <item name="android:onClick">onClick</item>
         <item name="android:background">@color/mediumTourquise</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">60dp</item>
+        <item name="android:textSize">80dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
     <style name="ProfilTableRow">

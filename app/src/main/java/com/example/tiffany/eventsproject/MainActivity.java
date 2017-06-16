@@ -1,10 +1,8 @@
 package com.example.tiffany.eventsproject;
 
 import android.content.Intent;
-import android.content.pm.PackageInstaller;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -18,16 +16,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tiffany.eventsproject.Helper.FachschaftenManager;
-import com.example.tiffany.eventsproject.Helper.ServerConnection;
 import com.example.tiffany.eventsproject.Helper.SessionManager;
-import com.example.tiffany.eventsproject.Model.Fachschaft;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-import com.example.tiffany.eventsproject.Helper.HttpGetEvent;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -133,19 +124,18 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_events) {
             Intent newEventActivity = new Intent(MainActivity.this, MainActivity.class);
             startActivity(newEventActivity);
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_mensa) {
             Intent newEventActivity = new Intent(MainActivity.this, MensaplanActivity.class);
             startActivity(newEventActivity);
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_fachschaften) {
             Intent newEventActivity = new Intent(MainActivity.this, FachschaftenActivity.class);
             startActivity(newEventActivity);
-        } else if (id == R.id.nav_manage) {
-            Intent newProfilActivity = new Intent(MainActivity.this, ProfilActivity.class);
-            startActivity(newProfilActivity);
         } else if (id == R.id.nav_share) {
+            Intent newActivity = new Intent(MainActivity.this, Info_Activity.class);
+            startActivity(newActivity);
 
         }
 

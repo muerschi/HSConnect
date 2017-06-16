@@ -101,13 +101,14 @@ public class FachschaftenManager {
 
     public boolean doesExist(){
 
+
         // If default value is returned, shared preferences is empty
-        if( PreferenceManager.getDefaultSharedPreferences(_context).equals(pref.getString("key","default value")))
+        if( pref.contains(KEY_FS_LIST))
         {
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
 
     }
 }

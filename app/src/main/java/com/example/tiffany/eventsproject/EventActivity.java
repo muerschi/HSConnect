@@ -53,6 +53,7 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
     TextView time, eventDate;
 
     SessionManager sessionManager = null;
+    HashMap<String, String> user = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,7 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
         setContentView(R.layout.activity_event);
 
         sessionManager = new SessionManager(getApplicationContext());
+        user = sessionManager.getUserDetails();
 
         eventTitle = (EditText) findViewById(R.id.editText1);
         location = (EditText) findViewById(R.id.editText2);
@@ -111,7 +113,6 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
                                 ev.setEventDate(eventDate.getText().toString());
                                 ev.setTime(time.getText().toString());
 
-                                HashMap<String, String> user = sessionManager.getUserDetails();
 
                                 ev.setFaculty(user.get(KEY_FACULTY));
                                 ev.setLocation(location.getText().toString());
@@ -157,6 +158,7 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
         outState.putString("eventDate", eventDate.getText().toString());
         outState.putString("time", time.getText().toString());
         outState.putString("location", location.getText().toString());
+        //outState.putString("faculty",user.get(SessionManager.KEY_FACULTY));
         super.onSaveInstanceState(outState);
     }
 
@@ -187,7 +189,7 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
         }
 
         time = (TextView) findViewById(R.id.editText4);
-        time.setText("um: "+formattedHour+":"+formattedMinute+" Uhr");
+        time.setText(formattedHour+":"+formattedMinute+" Uhr");
     }
 
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -206,7 +208,7 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
 
             formattedDayOfMonth = "0" + dayOfMonth;
         }
-        eventDate.setText("am: " + formattedDayOfMonth + "-" + formattedMonth + "-" + year);
+        eventDate.setText( formattedDayOfMonth + "-" + formattedMonth + "-" + year);
 
        // eventDate.setText(year+"-"+month+"-"+day);
     }

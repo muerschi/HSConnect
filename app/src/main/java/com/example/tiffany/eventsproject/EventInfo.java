@@ -11,13 +11,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tiffany.eventsproject.Helper.HttpPostEvent;
+import com.example.tiffany.eventsproject.Helper.SessionManager;
 import com.example.tiffany.eventsproject.Model.Event;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class EventInfo extends AppCompatActivity {
 
     TextView eventTitle, eventLocation, eventDate, eventTime, eventDescription;
+    SessionManager sessionManager = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,7 @@ public class EventInfo extends AppCompatActivity {
         MapsActivity mapsFragment = MapsActivity.newInstance(extras.getString("eventLocation"));
         setContentView(R.layout.activity_event_info);
 
-
+        sessionManager = new SessionManager(getApplicationContext());
 
         eventTitle = (TextView) findViewById(R.id.titleEvent);
         eventLocation = (TextView) findViewById(R.id.locationEvent);
@@ -53,45 +56,52 @@ public class EventInfo extends AppCompatActivity {
         Button deleteBtn = (Button) findViewById(R.id.deleteBtn);
         Button editBtn = (Button) findViewById(R.id.editBtn);
 
-        editBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)  {
+        final HashMap<String,String> user = sessionManager.getUserDetails();
 
-                Intent newEventActivity = new Intent(EventInfo.this, EventActivity.class);
+        if(user.get(SessionManager.KEY_ROLE).equals("admin")){
+            deleteBtn.setVisibility(View.VISIBLE);
+            editBtn.setVisibility(View.VISIBLE);
 
-                // Pass data of event to new activity
-                newEventActivity.putExtra("eventTitle", extras.getString("eventTitle"));
-                newEventActivity.putExtra("eventLocation", extras.getString("eventLocation"));
-                newEventActivity.putExtra("eventDate", extras.getString("eventDate"));
-                newEventActivity.putExtra("eventTime", extras.getString("eventTime"));
-                newEventActivity.putExtra("eventDescription", extras.getString("eventDescription"));
-                newEventActivity.putExtra("evID", extras.getInt("evID"));
-                //newEventActivity.putExtra("faculty", event.getFaculty());
+            editBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v)  {
 
-                startActivity(newEventActivity);
-            }
-        });
+                    Intent newEventActivity = new Intent(EventInfo.this, EventActivity.class);
 
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)  {
-                Event ev = new Event();
+                    // Pass data of event to new activity
+                    newEventActivity.putExtra("eventTitle", extras.getString("eventTitle"));
+                    newEventActivity.putExtra("eventLocation", extras.getString("eventLocation"));
+                    newEventActivity.putExtra("eventDate", extras.getString("eventDate"));
+                    newEventActivity.putExtra("eventTime", extras.getString("eventTime"));
+                    newEventActivity.putExtra("eventDescription", extras.getString("eventDescription"));
+                    newEventActivity.putExtra("evID", extras.getInt("evID"));
+                    newEventActivity.putExtra("faculty", user.get(SessionManager.KEY_ROLE));
 
-                ev.setId(extras.getInt("evID"));
-                new HttpPostEvent(ev, "delete") {
+                    startActivity(newEventActivity);
+                }
+            });
 
-                    @Override
-                    public void onPostExecute(String result) {
+            deleteBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v)  {
+                    Event ev = new Event();
 
-                        super.onPostExecute(result);
+                    ev.setId(extras.getInt("evID"));
+                    new HttpPostEvent(ev, "delete") {
 
-                        Intent newEventActivity = new Intent(EventInfo.this, MainActivity.class);
-                        newEventActivity.putExtra("result", result);
-                        startActivity(newEventActivity);
-                    }
-                }.execute();
+                        @Override
+                        public void onPostExecute(String result) {
 
-            }
-        });
+                            super.onPostExecute(result);
 
+                            Intent newEventActivity = new Intent(EventInfo.this, MainActivity.class);
+                            newEventActivity.putExtra("result", result);
+                            startActivity(newEventActivity);
+                        }
+                    }.execute();
+
+                }
+            });
+
+        }
 
 
     }

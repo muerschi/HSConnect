@@ -32,17 +32,36 @@
             android:text="@string/date"
             android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/dateEvent"
-            style="@style/EventEditText"
-            android:text="@string/date"
-            android:textSize="20dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/EventEditText"
+                android:text="am: "
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/dateEvent"
+                style="@style/EventEditText"
+                android:text="@string/date"
+                android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/timeEvent"
-            style="@style/EventEditText"
-            android:text="@string/date"
-            android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/EventEditText"
+                android:text="um: "
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/timeEvent"
+                style="@style/EventEditText"
+                android:text="@string/date"
+                android:textSize="20dp" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/descriptionEvent"
@@ -72,14 +91,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Bearbeiten"></Button>
+                android:text="Bearbeiten"
+                android:visibility="invisible"></Button>
 
             <Button
                 android:id="@+id/deleteBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Löschen"></Button>
+                android:text="Löschen"
+                android:visibility="invisible"></Button>
 
         </LinearLayout>
 

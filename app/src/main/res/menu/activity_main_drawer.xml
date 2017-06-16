@@ -3,22 +3,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_events"
             android:icon="@drawable/ic_events"
             android:tint="@color/white"
             android:title="Events" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_mensa"
             android:icon="@drawable/mensa"
             android:title="Mensaplan" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_fachschaften"
             android:icon="@drawable/institution_icon"
             android:title="Fachschaften" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/user"
-            android:title="Profil" />
+         />
     </group>
 
     <group>
