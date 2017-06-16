@@ -60,14 +60,14 @@ public class HttpGetEvent extends AsyncTask <Void, Void, ArrayList<Event>> {
         try {
             JSONArray array = new JSONArray(res);
 
+
+            // Um die Events nach Erstellungsdatum zu ordnen, drehen wir sie
             for (int i=array.length()-1; i>=0; i--) {
                 Gson gson = new Gson();
                 Event e = gson.fromJson(array.getString(i), Event.class);
                 eventList.add(e);
             }
 
-            // Um die Events nach Erstellungsdatum zu ordnen, drehen wir sie
-            Collections.reverse(eventList);
 
         } catch (JSONException e) {
             throw new RuntimeException(e);

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,66 +10,63 @@
     android:fillViewport="true">
 
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:orientation="vertical"
         android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:focusableInTouchMode="true"
         android:layout_gravity="top"
-        android:paddingTop="30dp"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
         android:paddingBottom="30dp"
         android:paddingLeft="30dp"
-        android:paddingRight="30dp">
+        android:paddingRight="30dp"
+        android:paddingTop="30dp">
 
 
         <EditText
             android:id="@+id/editText1"
-            android:hint="@string/eventTitle"
+            style="@style/EventEditText"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            style="@style/EventEditText"
-            />
+            android:hint="@string/eventTitle" />
 
         <EditText
             android:id="@+id/editText2"
-            android:hint="@string/location"
-            android:layout_below="@+id/editText1"
             style="@style/EventEditText"
-            />
+            android:layout_below="@+id/editText1"
+            android:hint="@string/location" />
+
 
         <TextView
             android:id="@+id/editText3"
-            android:text="@string/date"
             style="@style/EventEditText"
             android:layout_below="@+id/editText2"
             android:onClick="showDatePickerDialog"
-            android:textSize="20dp"
-            />
+            android:text="@string/date"
+            android:textSize="20dp" />
+
 
         <TextView
             android:id="@+id/editText4"
-            android:text="@string/time"
             style="@style/EventEditText"
             android:layout_below="@+id/editText3"
             android:onClick="showTimePickerDialog"
-            android:textSize="20dp"
-            />
+            android:text="@string/time"
+            android:textSize="20dp" />
+
 
         <EditText
             android:id="@+id/editText5"
-            android:hint="@string/description"
-            android:layout_below="@+id/editText4"
             style="@style/EventEditText"
-            />
+            android:layout_below="@+id/editText4"
+            android:hint="@string/description" />
 
         <Button
             android:id="@+id/save"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_below="@+id/editText5"
-            android:text="@string/save"
             android:layout_marginBottom="20dp"
-            />
+            android:text="@string/save" />
 
     </RelativeLayout>
 </ScrollView>

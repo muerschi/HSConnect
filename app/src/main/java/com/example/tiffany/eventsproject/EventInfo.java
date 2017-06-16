@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tiffany.eventsproject.Helper.HttpPostEvent;
+import com.example.tiffany.eventsproject.Helper.SessionManager;
 import com.example.tiffany.eventsproject.Model.Event;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -32,7 +33,9 @@ public class EventInfo extends AppCompatActivity {
 
     TextView eventTitle, eventLocation, eventDate, eventTime, eventDescription, facultyL;
     Address address = null;
+SessionManager sessionManager = null;
 
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,7 @@ public class EventInfo extends AppCompatActivity {
         setContentView(R.layout.activity_event_info);
 
 
+        sessionManager = new SessionManager(getApplicationContext());
 
         eventTitle = (TextView) findViewById(R.id.titleEvent);
         eventLocation = (TextView) findViewById(R.id.locationEvent);
@@ -63,6 +67,12 @@ public class EventInfo extends AppCompatActivity {
         Button editBtn = (Button) findViewById(R.id.editBtn);
         Button gmBtn = (Button) findViewById(R.id.gmBtn);
 
+		final HashMap<String,String> user = sessionManager.getUserDetails();
+
+        if(user.get(SessionManager.KEY_ROLE).equals("admin")) {
+            deleteBtn.setVisibility(View.VISIBLE);
+            editBtn.setVisibility(View.VISIBLE);
+
         editBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)  {
 
@@ -75,7 +85,8 @@ public class EventInfo extends AppCompatActivity {
                 newEventActivity.putExtra("eventTime", extras.getString("eventTime"));
                 newEventActivity.putExtra("eventDescription", extras.getString("eventDescription"));
                 newEventActivity.putExtra("evID", extras.getInt("evID"));
-                newEventActivity.putExtra("faculty", extras.getString("faculty"));
+                                   
+				newEventActivity.putExtra("faculty", user.get(SessionManager.KEY_ROLE));
 
                 startActivity(newEventActivity);
             }
@@ -111,6 +122,7 @@ public class EventInfo extends AppCompatActivity {
 
                             }
                         });
+			
 
                 builder1.setNegativeButton(
                         "Nein",
@@ -124,7 +136,7 @@ public class EventInfo extends AppCompatActivity {
                 alert11.show();
             }
         });
-
+		}
 
         gmBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

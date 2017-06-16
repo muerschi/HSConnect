@@ -437,7 +437,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         });
                 AlertDialog alert = alt_bld.create();
                 // Title for AlertDialog
-                alert.setTitle("Wrong User Credentials");
+                alert.setTitle("Anmelden fehlgeschlagen");
                 alert.show();
                 }
             }

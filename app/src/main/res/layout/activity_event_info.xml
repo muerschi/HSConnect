@@ -1,15 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.tiffany.eventsproject.EventInfo">-->
+<?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -18,56 +14,116 @@
         android:paddingBottom="30dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:paddingTop="30dp">
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="100dp"
+            android:id="@+id/facLetter"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="0dp"
+            android:layout_alignParentLeft="true"
+            android:paddingRight="10dp"
+            android:text="B"
+            android:gravity="top|center_horizontal"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/titleEvent"
-            style="@style/EventEditText"
-            android:text="@string/date"
-            android:textSize="20dp" />
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="20dp"
+            android:layout_toRightOf="@+id/facLetter"
+            android:textSize="22dp"
+            android:textStyle="bold"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:id="@+id/line"
+            android:background="@android:color/darker_gray"
+            android:layout_toRightOf="@+id/facLetter"
+            android:layout_below="@+id/titleEvent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"/>
+
+
+        <TextView
+            android:id="@+id/ort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/facLetter"
+            android:layout_alignParentLeft="true"
+            android:text="Ort: "
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/locationEvent"
-            style="@style/EventEditText"
-            android:text="@string/date"
-            android:textSize="20dp" />
-
-        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                style="@style/EventEditText"
-                android:text="am: "
-                android:textSize="20dp" />
-            <TextView
-                android:id="@+id/dateEvent"
-                style="@style/EventEditText"
-                android:text="@string/date"
-                android:textSize="20dp" />
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_below="@+id/facLetter"
+            android:layout_toEndOf="@+id/ort" />
 
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/datum"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                style="@style/EventEditText"
-                android:text="um: "
-                android:textSize="20dp" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ort"
+            android:layout_alignParentLeft="true"
+            android:text="Datum: "
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/timeEvent"
-                style="@style/EventEditText"
-                android:text="@string/date"
-                android:textSize="20dp" />
+        <TextView
+            android:id="@+id/dateEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_alignBaseline="@+id/datum"
+            android:layout_alignBottom="@+id/datum"
+            android:layout_toEndOf="@+id/datum" />
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/zeit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uhrzeit: "
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/dateEvent"
+            />
+
+
+        <TextView
+            android:id="@+id/timeEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_alignBaseline="@+id/zeit"
+            android:layout_alignBottom="@+id/zeit"
+            android:layout_toEndOf="@+id/zeit" />
+
+        <TextView
+            android:id="@+id/beschreibung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Beschreibung: "
+            android:textSize="20dp"
+            android:layout_below="@+id/zeit"
+            android:textStyle="bold"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/descriptionEvent"
-            style="@style/EventEditText"
-            android:text="@string/date"
-            android:textSize="20dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_below="@+id/beschreibung"
+            android:layout_alignParentStart="true"
+            android:paddingBottom="20dp"/>
 
 
         <fragment
@@ -77,32 +133,47 @@
             android:name="com.example.tiffany.eventsproject.MapsActivity"
             tools:layout="@layout/activity_maps"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="200dp"
+            android:layout_below="@+id/descriptionEvent"
+            android:layout_alignParentStart="true"
+            android:paddingBottom="20dp"/>
 
 
         <LinearLayout
             android:id="@+id/LinearLayout02"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/fragment"
+            android:layout_alignParentEnd="true"
+            >
+
+            <Button
+                android:id="@+id/gmBtn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Routenführung in Google Maps starten"
+                android:paddingBottom="10dp"></Button>
 
             <Button
                 android:id="@+id/editBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="Bearbeiten"
-                android:visibility="invisible"></Button>
+                android:paddingBottom="10dp"
+                android:visibility="invisible"
+                ></Button>
 
             <Button
                 android:id="@+id/deleteBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="Löschen"
+                android:paddingBottom="10dp"
                 android:visibility="invisible"></Button>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>

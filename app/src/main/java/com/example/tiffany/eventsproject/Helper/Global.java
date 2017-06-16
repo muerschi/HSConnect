@@ -6,5 +6,5 @@ package com.example.tiffany.eventsproject.Helper;
 
 public class Global {
 
-    public static String WEBSERVER_IP = "http://141.19.164.195:8080/PMAWebServer";
+    public static String WEBSERVER_IP = "http://141.19.177.110:8080/PMAWebServer";
 }
