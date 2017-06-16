@@ -93,8 +93,6 @@ public class EventActivity extends AppCompatActivity implements TimePickerDialog
         button.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v)  {
-                // Send Data
-                // Use SessionManager session to get faculty without having to choose
 
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(EventActivity.this);
                 builder1.setMessage("Möchten Sie das Event wirklich speichern?");

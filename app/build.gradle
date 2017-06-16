@@ -1,6 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    signingConfigs {
+        EventsProject {
+            keyAlias 'keystore'
+            keyPassword 'keystore'
+            storeFile file('../keystore.jks')
+            storePassword 'keystore'
+        }
+    }
+
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {

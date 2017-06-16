@@ -42,8 +42,8 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
         // Populate the data into the template view using the data object
         evTitle.setText(event.getTitle());
-        evLocation.setText("Wo? " + event.getLocation());
-        evTime.setText("Wann? " + event.getEventDate());
+        evLocation.setText("Ort: " + event.getLocation());
+        evTime.setText("Datum: " + event.getEventDate());
         evLetter.setText(event.getFaculty());
 
 
@@ -70,7 +70,8 @@ public class EventAdapter extends ArrayAdapter<Event> {
                 newEventActivity.putExtra("eventTime", event.getTime());
                 newEventActivity.putExtra("eventDescription", event.getDescription());
                 newEventActivity.putExtra("evID", event.getId());
-                //newEventActivity.putExtra("faculty", event.getFaculty());
+                newEventActivity.putExtra("faculty", event.getFaculty());
+
 
                 getContext().startActivity(newEventActivity);
             }

@@ -42,7 +42,7 @@ public class HttpGetEvent extends AsyncTask <Void, Void, ArrayList<Event>> {
 
         try {
             httpClient = new DefaultHttpClient();
-            httpGet = new HttpGet(Global.WEBSERVER_IP + "/event");
+            httpGet = new HttpGet(Global.WEBSERVER_IP+"/event");
             response = httpClient.execute(httpGet);
             InputStream content = response.getEntity().getContent();
 
@@ -59,7 +59,7 @@ public class HttpGetEvent extends AsyncTask <Void, Void, ArrayList<Event>> {
         try {
             JSONArray array = new JSONArray(res);
 
-            for (int i=0; i<array.length(); i++) {
+            for (int i=array.length()-1; i>=0; i--) {
                 Gson gson = new Gson();
                 Event e = gson.fromJson(array.getString(i), Event.class);
                 eventList.add(e);
